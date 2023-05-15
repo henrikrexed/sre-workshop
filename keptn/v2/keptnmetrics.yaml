@@ -1,0 +1,43 @@
+apiVersion: metrics.keptn.sh/v1alpha3
+kind: KeptnMetric
+metadata:
+  name: keptnmetric-cpu_limits
+  namespace: otel-demo
+spec:
+  provider:
+    name: "dynatrace"
+  query: "sum(kube_pod_container_resource_limits{resource='cpu'})"
+  fetchIntervalSeconds: 5
+---
+apiVersion: metrics.keptn.sh/v1alpha3
+kind: KeptnMetric
+metadata:
+  name: keptnmetric-htt-post-p95
+  namespace: otel-demo
+spec:
+  provider:
+    name: "dynatrace"
+  query: "sum(kube_pod_container_resource_limits{resource='cpu'})"
+  fetchIntervalSeconds: 5
+---
+apiVersion: metrics.keptn.sh/v1alpha3
+kind: KeptnMetric
+metadata:
+  name: keptnmetric-htt-get-p95
+  namespace: otel-demo
+spec:
+  provider:
+    name: "dynatrace"
+  query: "sum(kube_pod_container_resource_limits{resource='cpu'})"
+  fetchIntervalSeconds: 5
+---
+apiVersion: metrics.keptn.sh/v1alpha3
+kind: KeptnMetric
+metadata:
+  name: keptnmetric-getproduct-P95
+  namespace: otel-demo
+spec:
+  provider:
+    name: "dynatrace"
+  query: "sum(kube_pod_container_resource_limits{resource='cpu'})"
+  fetchIntervalSeconds: 5

@@ -1,0 +1,107 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: hipster-shop-gateway
+  namespace: hipster-shop
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+      - "hipster-shop.IP_TO_REPLACE.nip.io"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: hipster-shop-httproute
+  namespace: hipster-shop
+spec:
+  hosts:
+  - "hipster-shop.IP_TO_REPLACE.nip.io"
+  gateways:
+  - hipster-shop-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        port:
+          number: 80
+        host: frontend
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: oteldemo-gateway
+  namespace: otel-demo
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "oteldemo.IP_TO_REPLACE.nip.io"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: oteldemo-httproute
+  namespace: otel-demo
+spec:
+  hosts:
+  - "oteldemo.IP_TO_REPLACE.nip.io"
+  gateways:
+  - oteldemo-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+      - destination:
+          port:
+            number: 8080
+          host: opentelemetry-demo-frontend
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: litmus-gateway
+  namespace: litmus
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+      - "litmus.IP_TO_REPLACE.nip.io"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: litmus-httproute
+  namespace: litmus
+spec:
+  hosts:
+  - "litmus.IP_TO_REPLACE.nip.io"
+  gateways:
+  - litmus-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            port:
+              number: 9091
+            host: chaos-litmus-frontend-service

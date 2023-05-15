@@ -1,0 +1,10 @@
+apiVersion: lifecycle.keptn.sh/v1alpha2
+kind: KeptnEvaluationDefinition
+metadata:
+  name: pre-deploy-eval-ressources
+spec:
+  source: prometheus
+  objectives:
+    - name: available cores
+      query: "sum(node:node_num_cpu:sum ) - sum(kube_pod_container_resource_requests{resource='cpu'})"
+      evaluationTarget: ">2"

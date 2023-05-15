@@ -1,0 +1,46 @@
+apiVersion: lifecycle.keptn.sh/v1alpha2
+kind: KeptnApp
+metadata:
+  name: otel-demo-applicaton
+  namespace: otel-demo
+spec:
+  version: "1.4.0"
+  workloads:
+    - name: opentelemetry-accounting
+      version: 1.4.0
+    - name: opentelemetry-adservice
+      version: 1.4.0
+    - name: opentelemetry-cartservice
+      version: 1.4.0
+    - name: opentelemetry-checkout
+      version: 1.4.0
+    - name: opentelemetry-currency
+      version: 1.4.0
+    - name: opentelemetry-shipping
+      version: 1.4.0
+    - name: opentelemetry-email
+      version: 1.4.0
+    - name: opentelemetry-redis
+      version: 1.4.0
+    - name: opentelemetry-reco
+      version: 1.4.0
+    - name: opentelemetry-quote
+      version: 1.4.0
+    - name: opentelemetry-product
+      version: 1.4.0
+    - name: opentelemetry-payment
+      version: 1.4.0
+    - name: opentelemetry-load
+      version: 1.4.0
+    - name: opentelemetry-kafka
+      version: 1.4.0
+    - name: opentelemetry-frontproxy
+      version: 1.4.0
+    - name: opentelemetry-frontend
+      version: 1.4.0
+    - name: opentelemetry-fraud
+      version: 1.4.0
+    - name: opentelemetry-ffspostgres
+      version: 1.4.0
+    - name: opentelemetry-featureflag
+      version: 1.4.0

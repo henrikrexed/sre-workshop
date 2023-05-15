@@ -1,0 +1,23 @@
+keptnapiVersion: lifecycle.keptn.sh/v1alpha3
+kind: KeptnMetricsProvider
+metadata:
+  name: dynatrace
+  namespace: otel-demo
+spec:
+  type: dynatrace
+  targetServer: "TENANTURL_TOREPLACE"
+  secretKeyRef:
+    name: dynatrace
+    key: dt_api_token
+---
+keptnapiVersion: lifecycle.keptn.sh/v1alpha3
+kind: KeptnMetricsProvider
+metadata:
+  name: dynatrace
+  namespace: hipster-shop
+spec:
+  type: dql
+  targetServer: "TENANTURL_TOREPLACE"
+  secretKeyRef:
+    name: dynatrace
+    key: dt_api_token

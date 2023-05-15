@@ -1,0 +1,48 @@
+apiVersion: lifecycle.keptn.sh/v1alpha2
+kind: KeptnTaskDefinition
+metadata:
+  name: synthetic-test
+spec:
+  function:
+    inline:
+      code: |
+        try {
+
+           for (let n = 0; n <= 5; n++) {
+                let res = await fetch("http://opentelemetry-demo-frontend:8080");
+                if(res.status != 200)
+                {
+                  console.log("the response code is not 200 for the home page");
+                  const response = await fetch("http://localhost:15020/quitquitquit", {
+                                method: 'POST',
+                              });
+                  throw new Deno.errors.Http();
+                }
+                res = await fetch("http://opentelemetry-demo-frontend:8080/api/cart");
+                if(res.status != 200)
+                {
+                  console.log("the response code is not 200 for the cart page");
+                  const response = await fetch("http://localhost:15020/quitquitquit", {
+                      method: 'POST',
+                    });
+                  throw new Deno.errors.Http();
+                }
+                res = await fetch("http://opentelemetry-demo-frontend:8080/api/products/LS4PSXUNUM");
+                if(res.status != 200)
+                {
+                  console.log("the response code is not 200 for the product page");
+                  const response = await fetch("http://localhost:15020/quitquitquit", {
+                                method: 'POST',
+                              });
+                  throw new Deno.errors.Http();
+                }
+
+           }
+           const response = await fetch("http://localhost:15020/quitquitquit", {
+                        method: 'POST',
+            });
+        }
+        catch (e){
+            console.error("Issue running the synthethic test ",e)
+            Deno.exit(1)
+        }

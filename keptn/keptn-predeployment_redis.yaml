@@ -1,0 +1,25 @@
+apiVersion: lifecycle.keptn.sh/v1alpha2
+kind: KeptnTaskDefinition
+metadata:
+  name: redis-check
+spec:
+  function:
+    inline:
+      code: |
+        import {
+            connect as redisConnect
+          } from 'https://deno.land/x/redis/mod.ts';
+        try {
+             const redisClient = await redisConnect({
+                hostname: 'opentelemetry-demo-redis',
+                port: 6379,
+               });
+             await redisClient.ping()
+             const response = await fetch("http://localhost:15020/quitquitquit", {
+                          method: 'POST',
+                        });
+        }
+        catch (error){
+                   console.error("Could not connect to the Redis")
+                   Deno.exit(1)
+        }

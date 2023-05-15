@@ -1,0 +1,16 @@
+apiVersion: lifecycle.keptn.sh/v1alpha2
+kind: KeptnEvaluationDefinition
+metadata:
+  name: response-time-check
+spec:
+  source: prometheus
+  objectives:
+    - name: HTTP get latency
+      query: "histogram_quantile(0.95, sum by(le) (rate(latency_bucket{operation='HTTP GET'}[10m])))"
+      evaluationTarget: "<170"
+    - name: HTTP POST latency
+      query: "histogram_quantile(0.95, sum by(le) (rate(latency_bucket{operation='HTTP POST'}[10m])))"
+      evaluationTarget: "<150"
+    - name: productcatalog get product
+      query: "histogram_quantile(0.95, sum by(le) (rate(latency_bucket{operation='grpc.hipstershop.ProductCatalogService/GetProduct'}[10m])))"
+      evaluationTarget: "<40"

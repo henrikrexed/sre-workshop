@@ -1,0 +1,24 @@
+apiVersion: lifecycle.keptn.sh/v1alpha2
+kind: KeptnTaskDefinition
+metadata:
+  name: postgres-check
+spec:
+  function:
+    inline:
+      code: |
+        import { Client } from "https://deno.land/x/postgres@v0.17.0/mod.ts";
+        let config;
+        try {
+          config="postgres://ffs:ffs@opentelemetry-demo-ffspostgres:5432/ffs";
+
+          const client = new Client(config);
+          await client.connect();
+          await client.end();
+          const response = await fetch("http://localhost:15020/quitquitquit", {
+                      method: 'POST',
+                    });
+        }
+        catch (error){
+            console.error("Could not connect to the database")
+            Deno.exit(1)
+        }

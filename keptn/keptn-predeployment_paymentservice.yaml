@@ -1,0 +1,12 @@
+apiVersion: lifecycle.keptn.sh/v1alpha2
+kind: KeptnTaskDefinition
+metadata:
+  name: payment-check
+spec:
+  function:
+    httpRef:
+      url: https://raw.githubusercontent.com/keptn/lifecycle-toolkit/main/functions-runtime/samples/ts/dns.ts
+    parameters:
+      map:
+        host: opentelemetry-demo-paymentservice
+        istio: true
