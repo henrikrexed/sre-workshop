@@ -9,4 +9,4 @@ spec:
     parameters:
       map:
         host: opentelemetry-demo-checkoutservice
-        istio: true
+        istio: "true"

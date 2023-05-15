@@ -1,6 +1,6 @@
 let text = Deno.env.get("DATA");
 let data;
-data = JSON.parse(text,(k, v) => v === "true" ? true : v === "false" ? false : v););
+data = JSON.parse(text,(k, v) => v === "true" ? true : v === "false" ? false : v);
 
 try {
     const a = await Deno.resolveDns(data.host, "A");

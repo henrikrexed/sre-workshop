@@ -9,4 +9,4 @@ spec:
     parameters:
       map:
         host: opentelemetry-demo-paymentservice
-        istio: true
+        istio: "true"

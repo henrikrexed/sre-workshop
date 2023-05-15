@@ -9,4 +9,4 @@ spec:
     parameters:
       map:
         host: opentelemetry-demo-recommendationservice
-        istio: true
+        istio: "true"

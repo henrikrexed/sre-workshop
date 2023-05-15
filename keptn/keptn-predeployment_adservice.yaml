@@ -9,4 +9,4 @@ spec:
     parameters:
       map:
         host: opentelemetry-demo-adservice
-        istio: true
+        istio: "true"

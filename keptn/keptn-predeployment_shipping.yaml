@@ -9,4 +9,4 @@ spec:
     parameters:
       map:
         host: opentelemetry-demo-shippingservice
-        istio: true
+        istio: "true"
