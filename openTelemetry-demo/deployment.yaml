@@ -1271,7 +1271,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: frontend
-          image: 'ghcr.io/open-telemetry/demo:v1.4.0-frontend'
+          image: 'otel/demo:v1.4.0-frontend'
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
