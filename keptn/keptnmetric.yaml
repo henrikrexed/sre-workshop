@@ -1,0 +1,11 @@
+apiVersion: metrics.keptn.sh/v1alpha3
+kind: KeptnMetric
+metadata:
+  name: keptnmetric-frontend-throttle
+  namespace: hipster-shop
+spec:
+  provider:
+    name: "dynatrace"
+  query: "(( builtin:kubernetes.workload.cpu_throttled :filter(eq(\"k8s.workload.name\",\"frontend\")) :splitBy(\"k8s.namespace.name\",\"k8s.workload.kind\",\"k8s.workload.name\") :sum / builtin:kubernetes.workload.cpu_usage :filter(eq(\"k8s.deployment.name\",\"frontend\")) :splitBy(\"k8s.namespace.name\",\"k8s.workload.kind\",\"k8s.workload.name\") :sum ) :default(0.0) * 100.0)"
+  fetchIntervalSeconds: 5
+

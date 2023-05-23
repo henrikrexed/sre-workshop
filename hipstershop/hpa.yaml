@@ -1,0 +1,24 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpa-frontend
+  namespace: hipster-shop
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: frontend
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+    - type: Object
+      object:
+        metric:
+          name: keptnmetric-frontend-throttle
+        describedObject:
+          apiVersion: metrics.keptn.sh/v1alpha1
+          kind: KeptnMetric
+          name: keptnmetric-frontend-throttle
+        target:
+          type: Value
+          value: "25"

@@ -768,6 +768,8 @@ spec:
             limits:
               cpu: 200m
               memory: 128Mi
+      nodeSelector:
+        node-type: worker
 ---
 apiVersion: v1
 kind: Service
@@ -844,6 +846,8 @@ spec:
           ports:
             - containerPort: 9121
               protocol: TCP
+      nodeSelector:
+        node-type: worker
       volumes:
         - name: redis-data
           emptyDir: {}
@@ -917,6 +921,8 @@ spec:
             periodSeconds: 15
             exec:
               command: ["/bin/grpc_health_probe", "-addr=:9555"]
+      nodeSelector:
+        node-type: worker
 ---
 apiVersion: v1
 kind: Service

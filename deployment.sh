@@ -155,7 +155,8 @@ kubectl apply -f keptn/keptn-predeployment_productcatalogserice.yaml -n otel-dem
 kubectl apply -f keptn/keptn-predeployment_recommendation.yaml -n otel-demo
 kubectl apply -f keptn/keptn-predeployment_redis.yaml -n otel-demo
 kubectl apply -f keptn/keptn-predeployment_shipping.yaml -n otel-demo
-kubectl apply -f openTelemetry-demo/deployment.yaml -n otel-demo
+
+
 #Deploy the ingress rules
 kubectl apply -f istio/istio_gateway.yaml
 echo "--------------Demo--------------------"
